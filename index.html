@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Авторизация -->
+    <div id="auth-container" class="container">
+        <div class="auth-form">
+            <h1><i class="fas fa-comments"></i> Messenger</h1>
+            
+            <div class="tabs">
+                <button class="tab active" data-tab="login">Вход</button>
+                <button class="tab" data-tab="register">Регистрация</button>
+            </div>
+
+            <form id="login-form" class="auth-tab active">
+                <input type="text" id="login-username" placeholder="Имя пользователя" required>
+                <input type="password" id="login-password" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+
+            <form id="register-form" class="auth-tab">
+                <input type="text" id="register-username" placeholder="Имя пользователя" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Пароль" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+
+            <div id="auth-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Основной интерфейс -->
+    <div id="app-container" class="container hidden">
+        <header class="header">
+            <h1><i class="fas fa-comments"></i> Messenger</h1>
+            <div class="user-info">
+                <span id="current-user"></span>
+                <button id="logout-btn" class="logout-btn">Выйти</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Список пользователей -->
+            <aside class="users-sidebar">
+                <div class="sidebar-header">
+                    <h3>Пользователи</h3>
+                </div>
+                <div class="users-list">
+                    <div class="user-item general-chat active" data-user="general">
+                        <i class="fas fa-users"></i>
+                        <span>Общий чат</span>
+                    </div>
+                    <div id="users-list"></div>
+                </div>
+            </aside>
+
+            <!-- Область чата -->
+            <main class="chat-area">
+                <div class="chat-header">
+                    <h3 id="chat-with">Общий чат</h3>
+                    <div id="typing-indicator"></div>
+                </div>
+
+                <div class="messages-container">
+                    <div id="messages-list"></div>
+                </div>
+
+                <div class="message-input-container">
+                    <form id="message-form">
+                        <input type="text" id="message-input" placeholder="Введите сообщение..." autocomplete="off">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
